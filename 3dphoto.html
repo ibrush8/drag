@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html ondragstart="return false">
+
+<head>
+	<title>js练习</title>
+	<meta charset="UTF-8">
+	<style>
+		body {
+			margin: 0;
+			padding: 0;
+			background: black;
+		}
+
+		#prespective {
+			perspective: 800px;
+		}
+
+		#wrap {
+			display: block;
+			position: relative;
+			width: 200px;
+			margin: 200px auto;
+			transform-style: preserve-3d;
+			transform: rotateX(-20deg) rotateY(0);
+		}
+
+		img {
+			width: 200px;
+
+
+			position: absolute;
+		}
+	</style>
+</head>
+
+<body>
+	<div id="prespective">
+		<div id="wrap">
+			<img src="3d/1.jpg">
+			<img src="3d/2.jpg">
+			<img src="3d/3.jpg">
+			<img src="3d/4.jpg">
+			<img src="3d/5.jpg">
+			<img src="3d/6.jpg">
+			<img src="3d/7.jpg">
+			<img src="3d/8.jpg">
+			<img src="3d/9.jpg">
+			<img src="3d/10.jpg">
+			<img src="3d/11.jpg">
+			<img src="3d/12.jpg">
+		</div>
+	</div>
+
+
+
+	<script>
+		window.onload = function () {
+			var oimg = document.getElementsByTagName('img');
+			var deg = 360 / oimg.length;
+			[].map.call(oimg, function (arg1, arg2) {
+				arg1.style.transform = "rotateY(" + arg2 * deg + "deg) translateZ(390px)";
+				arg1.style.transition = '1s ' + (oimg.length - arg2) * 0.2 + 's';
+
+			});
+
+
+
+		}
+
+		var newX, newY, oldX, oldY, nowX, nowY, rotX = -20,
+			rotY = 0;
+		var owarp = document.getElementById('wrap');
+		document.onmousedown = function (e) {
+			oldX = e.clientX;
+			oldY = e.clientY;
+			this.onmousemove = function (e) {
+				newX = e.clientX;
+				newY = e.clientY;
+				nowX = newX - oldX;
+				nowY = newY - oldY;
+
+				rotX += nowY * 0.2;
+				rotY -= nowX * 0.2;
+
+				owarp.style.transform = "rotateX(" + rotX + "deg) rotateY(" + rotY + "deg)";
+
+				oldX = newX;
+				oldY = newY;
+
+
+
+			}
+			this.onmouseup = function (e) {
+				this.onmousemove = null;
+			}
+		}
+	</script>
+</body>
+
+</html>
