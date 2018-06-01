@@ -50,9 +50,6 @@
 			<img src="3d/12.jpg">
 		</div>
 	</div>
-
-
-
 	<script>
 		window.onload = function () {
 			var oimg = document.getElementsByTagName('img');
@@ -66,10 +63,12 @@
 
 
 		}
+//相册拖动效果
 
 		var newX, newY, oldX, oldY, nowX, nowY, rotX = -20,
 			rotY = 0;
 		var owarp = document.getElementById('wrap');
+
 		document.onmousedown = function (e) {
 			oldX = e.clientX;
 			oldY = e.clientY;
@@ -86,9 +85,6 @@
 
 				oldX = newX;
 				oldY = newY;
-
-
-
 			}
 			this.onmouseup = function (e) {
 				this.onmousemove = null;
@@ -96,5 +92,4 @@
 		}
 	</script>
 </body>
-
 </html>
